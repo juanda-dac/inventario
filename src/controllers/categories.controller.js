@@ -1,5 +1,12 @@
+import getConnection from "../db/database.js";
 
+export async function getCategories(req, res){
+    
+    const connection = await getConnection();
 
-export function getCategories(req, res){
-    return res.json({ "category": "Electrodoméstico" });
+    const result = await connection.query("SELECT CategoriaID, CategoriaNombre, Descripcion, Imagen from categorias");
+
+    return res.json(result)
+
 }
+
